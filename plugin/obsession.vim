@@ -52,7 +52,8 @@ function! s:persist()
     try
       " set sessionoptions-=blank sessionoptions-=options
       execute 'mksession! '.fnameescape(g:this_obsession)
-      call writefile(insert(readfile(g:this_obsession), 'let g:this_obsession = v:this_session', -2), g:this_obsession)
+      " call writefile(insert(readfile(g:this_obsession), 'let g:this_obsession = v:this_session', -2), g:this_obsession)
+      call writefile(insert(readfile(g:this_obsession, 'b'), 'let g:this_obsession = v:this_session', -2), g:this_obsession)
     catch
       unlet g:this_obsession
       return 'echoerr '.string(v:exception)
